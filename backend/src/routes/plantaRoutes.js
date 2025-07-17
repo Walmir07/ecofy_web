@@ -1,5 +1,5 @@
 import express, { json } from "express";
-import { listarPlantas } from "../controllers/plantasController.js";
+import { listarPlantas, criarNovaPlanta } from "../controllers/plantasController.js";
 
 const routes = (app) => {
 
@@ -10,6 +10,8 @@ const routes = (app) => {
     })
 
     app.get("/plantas", listarPlantas);
+
+    app.post("/plantas", criarNovaPlanta);
 
 }
 

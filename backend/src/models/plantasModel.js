@@ -7,3 +7,9 @@ export async function obterPlantas() {
     const colecao = db.collection("plantas");
     return colecao.find().toArray();
 };
+
+export async function criarPlanta(novaPlanta) {
+    const db = conexao.db("EcofyDB");
+    const colecao = db.collection("plantas");
+    return colecao.insertOne(novaPlanta);
+}
