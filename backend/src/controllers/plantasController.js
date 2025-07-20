@@ -1,5 +1,5 @@
 import fs from "fs";
-import { obterPlantas, criarPlanta, atualizarPlanta } from "../models/plantasModel.js";
+import { obterPlantas, criarPlanta, atualizarPlanta, deletarPlanta } from "../models/plantasModel.js";
 
 export async function listarPlantas(req, res) {
     const plantas = await obterPlantas();
@@ -36,7 +36,6 @@ export async function uploadImagem(req, res){
     }
 }
 
-//Controller para atualizar planta:
 export async function atualizarDadosPlanta(req, res){
 
     const id = req.params.id;
@@ -49,4 +48,18 @@ export async function atualizarDadosPlanta(req, res){
         console.error(error.message);
         res.status(500).json({"Erro":"Erro ao atualizar planta."});
     }
+}
+
+export async function removerPlanta(req, res){
+    
+    const id = req.params.id;
+
+    try {
+        const remover = await deletarPlanta(id);
+        res.status(200).json(remover);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({"Erro":"Erro ao remover planta."});
+    }
+
 }
