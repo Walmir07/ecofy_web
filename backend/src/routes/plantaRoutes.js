@@ -1,6 +1,6 @@
 import express, { json } from "express";
 import multer from "multer";
-import { listarPlantas, criarNovaPlanta, uploadImagem } from "../controllers/plantasController.js";
+import { listarPlantas, criarNovaPlanta, uploadImagem, atualizarDadosPlanta } from "../controllers/plantasController.js";
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -27,6 +27,9 @@ const routes = (app) => {
 
     app.post("/upload", upload.single("imagem"), uploadImagem);
 
+    //Rota para atualizar planta:
+    app.put("/plantas/:id", atualizarDadosPlanta);
+    
 }
 
 export default routes;

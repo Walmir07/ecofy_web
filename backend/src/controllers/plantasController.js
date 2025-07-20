@@ -1,5 +1,5 @@
 import fs from "fs";
-import { obterPlantas, criarPlanta } from "../models/plantasModel.js";
+import { obterPlantas, criarPlanta, atualizarPlanta } from "../models/plantasModel.js";
 
 export async function listarPlantas(req, res) {
     const plantas = await obterPlantas();
@@ -33,5 +33,20 @@ export async function uploadImagem(req, res){
     } catch (error) {
         console.error(error.message);
         res.status(500).json({"Erro":"Falha na requisição"});
+    }
+}
+
+//Controller para atualizar planta:
+export async function atualizarDadosPlanta(req, res){
+
+    const id = req.params.id;
+    const dadosNovos = req.body;
+
+    try {
+        const resultado = await atualizarPlanta(id, dadosNovos);
+        res.status(200).json(resultado);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({"Erro":"Erro ao atualizar planta."});
     }
 }
