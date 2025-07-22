@@ -1,6 +1,12 @@
 import express, { json } from "express";
 import multer from "multer";
+import cors from "cors";
 import { listarPlantas, criarNovaPlanta, uploadImagem, atualizarDadosPlanta, removerPlanta } from "../controllers/plantasController.js";
+
+const corsOptions = {
+  origin: "https://localhost:8000", //URL do front-end
+  optionsSuccessStatus: 200
+}
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -16,9 +22,10 @@ const upload = multer({ dest: "./uploads", storage });
 const routes = (app) => {
 
     app.use(express.json());
+    app.use(cors(corsOptions));
 
     app.get("/", async (req, res) => {
-        res.status(200).send("Bem vindo ao Ecofy!")
+        res.status(200).send("Bem vindo ao Ecofy!");
     })
 
     app.get("/plantas", listarPlantas);
