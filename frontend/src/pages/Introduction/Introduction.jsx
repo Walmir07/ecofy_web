@@ -1,12 +1,14 @@
 import React from 'react';
 import "./Introduction.css";
+import { Link } from "react-router-dom";
 
 const Introduction = () => {
   return (
-    <div>
-        <h1>Seja bem vindo ao Ecofy!!!</h1>
+    <div className="container">
+        <p>Explore a natureza de forma digital</p>
+        <Link className='link' to="/">Acessar catálogo</Link>
     </div>
   )
 }
 
-export default Introduction
+export default Introduction;
