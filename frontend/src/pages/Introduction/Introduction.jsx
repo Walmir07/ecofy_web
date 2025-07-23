@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 const Introduction = () => {
   return (
-    <div className="container">
+    <div className="introduction">
         <p>Explore a natureza de forma digital</p>
-        <Link className='link' to="/">Acessar catálogo</Link>
+        <Link className='link' to="/home">Acessar catálogo</Link>
     </div>
   )
 }
