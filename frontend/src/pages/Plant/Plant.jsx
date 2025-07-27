@@ -1,7 +1,8 @@
 import React from 'react';
 import "./Plant.css";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { plantas } from '../../assets/database/plants';
+import imagemSeta from "/arrow-left.svg"
 
 const Plant = () => {
 
@@ -14,15 +15,28 @@ const Plant = () => {
 
   return (
     <div className='plant'>
-        <div className="area-voltar">
+        <div className="area-voltar" to={"/home"}>
+          <Link to={"/home"} className='voltar'>
+            <img src={imagemSeta} alt="Seta para voltar" />
             <p>Voltar</p>
+          </Link>
         </div>
         <div className='area-planta'>
             <div className='planta'>
-                <p>{nome}</p>
-                <p>{categoria}</p>
-                <p>{descricao}</p>
-                <p>{imagemUrl}</p>
+                <div className="informacoes">
+                    <div className="imagem">
+                        <img src={"/imagem-de-planta.avif"} alt="Imagem de paltas teste" />
+                    </div>
+                    <div className="dados">
+                        <p>Nome: {nome}</p>
+                        <p>Categoria: {categoria}</p>
+                        <p>Descrição: {descricao}</p>
+                    </div>
+                </div>
+                <div className="funcionalidades">
+                  <button className="editar">Editar</button>
+                  <button className="delelar">Deletar</button>
+                </div>
             </div>
         </div>
     </div>
