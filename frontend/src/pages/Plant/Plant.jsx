@@ -2,7 +2,7 @@ import React from 'react';
 import "./Plant.css";
 import { Link, useParams } from 'react-router-dom';
 import { plantas } from '../../assets/database/plants';
-import imagemSeta from "/arrow-left.svg"
+import imagemSeta from "/arrow-left.svg";
 
 const Plant = () => {
 
@@ -15,8 +15,8 @@ const Plant = () => {
 
   return (
     <div className='plant'>
-        <div className="area-voltar" to={"/home"}>
-          <Link to={"/home"} className='voltar'>
+        <div className="area-voltar">
+          <Link to={"/plantas"} className='voltar'>
             <img src={imagemSeta} alt="Seta para voltar" />
             <p>Voltar</p>
           </Link>
