@@ -10,7 +10,7 @@ const Home = () => {
          <div className='opcoes'>
             <input className='barra-pesquisa' placeholder='Buscar planta...'></input>
             <button className='botoes'>Pesquisar</button>
-            <Link to={"/criar"} className='botoes'>Adicionar</Link>
+            <Link to={"/plantas/criar"} className='botoes'>Adicionar</Link>
         </div>
         <div className='catalogo'>
             

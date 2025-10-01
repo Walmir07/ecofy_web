@@ -5,6 +5,9 @@ import imagemSeta from "/arrow-left.svg";
 
 const Create = () => {
 
+  const [nome, setNome] = useState("");
+  const [tipo, setTipo] = useState("");
+  const [descricao, setDescricao] = useState("");
   const [imagem, setImagem] = useState(null);
 
   const uploadImagemPlanta = (event) => {
@@ -12,9 +15,9 @@ const Create = () => {
         if (file) {
         const reader = new FileReader();
         reader.onloadend = () => {
-          setImagem(reader.result); // Atualiza o estado com a imagem carregada
+          setImagem(reader.result);
         };
-        reader.readAsDataURL(file); // Lê o arquivo como uma URL de dados
+        reader.readAsDataURL(file);
     }
   };
 
@@ -32,7 +35,10 @@ const submeterPlanta = (e) => {
   e.preventDefault();
   const novaPlanta = {
 
-    nomeProjeto, // 1 - Adicionar dados das plantas
+    nome,
+    tipo,
+    descricao,
+    imagem
 
   };
 
@@ -40,7 +46,10 @@ const submeterPlanta = (e) => {
 
   addPlanta(novaPlanta);
   
-  setImagem(null); // 2 - Adicionar os sets dos dados
+  setNome;
+  setTipo;
+  setDescricao;
+  setImagem(null);
 
 }
 
@@ -54,14 +63,15 @@ const submeterPlanta = (e) => {
           </Link>
         </div>
         <div className='area-formulario'>
-            <div className='formulario' onSubmit={submeterPlanta}>
+            <form className='formulario' onSubmit={submeterPlanta}>
                 <div className="area-inputs">
                     <div className="dados">
                         <input type='text' placeholder='Nome da planta...'></input>
-                        <input type='text' placeholder='Nome da planta...'></input>
-                        <textarea type='text' placeholder='Nome da planta...'></textarea>
+                        <input type='text' placeholder='Tipo da planta...'></input>
+                        <textarea type='text' placeholder='Descrição da planta...'></textarea>
                     </div>
                     <div className="imagem">
+
                         <p>Imagem</p>
 
                         <label htmlFor='imagemPlanta' className='imagem-planta'>
@@ -72,16 +82,16 @@ const submeterPlanta = (e) => {
                                 accept='image/*'
                                 onChange={uploadImagemPlanta}
                             />
-                            <span className="add-image">{imagem ? "" : "+"}</span>
-                            {imagem && <img src={imagem} alt="Uploaded" />}
+                            <span className="addImagemPlanta">{imagem ? "" : "+"}</span>
+                            {imagem && <img className='preview-imagem' src={imagem} alt="Uploaded" />}
                         </label>
 
                     </div>
                 </div>
                 <div className="area-salvar">
-                  <button className="salvar">Salvar</button>
+                  <button className="salvar" type='submit'>Salvar</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
   )
