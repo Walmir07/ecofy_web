@@ -15,7 +15,7 @@ export const plantas = [
   },
   {
     _id: "683e3a10a429f73f128d9470",
-    nome: "Pimenta Ornamental",
+    "nome": "Pimenta Ornamental",
     categoria: "Ornamental Comestível",
     descricao: "Planta vibrante com pequenos frutos coloridos que adicionam um toque decorativo e podem ser consumidos (alguns picantes!).",
     imagemUrl: "https://exemplo.com/imagens/pimenta-ornamental.jpg"
