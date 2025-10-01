@@ -46,9 +46,9 @@ const submeterPlanta = (e) => {
 
   addPlanta(novaPlanta);
   
-  setNome;
-  setTipo;
-  setDescricao;
+  setNome('');
+  setTipo('');
+  setDescricao('');
   setImagem(null);
 
 }
@@ -65,10 +65,36 @@ const submeterPlanta = (e) => {
         <div className='area-formulario'>
             <form className='formulario' onSubmit={submeterPlanta}>
                 <div className="area-inputs">
+                  
                     <div className="dados">
-                        <input type='text' placeholder='Nome da planta...'></input>
-                        <input type='text' placeholder='Tipo da planta...'></input>
-                        <textarea type='text' placeholder='Descrição da planta...'></textarea>
+
+                        <input 
+                            type='text'
+                            id='nomePlanta' 
+                            name='nomePlanta' 
+                            value={nome} 
+                            placeholder='Nome da planta...'
+                            onChange={(e) => setNome(e.target.value)}>
+                        </input>
+                        
+                        <input 
+                            type='text' 
+                            id='tipoPlanta' 
+                            name='tipoPlanta'  
+                            value={tipo} 
+                            placeholder='Tipo da planta...'
+                            onChange={(e) => setTipo(e.target.value)}>
+                        </input>
+                        
+                        <textarea 
+                            type='text' 
+                            id='descricaoPlanta' 
+                            name='descricaoPlanta' 
+                            value={descricao} 
+                            placeholder='Descrição da planta...'
+                            onChange={(e) => setDescricao(e.target.value)}>
+                        </textarea>
+                   
                     </div>
                     <div className="imagem">
 
