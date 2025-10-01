@@ -10,11 +10,7 @@ const Home = () => {
          <div className='opcoes'>
             <input className='barra-pesquisa' placeholder='Buscar planta...'></input>
             <button className='botoes'>Pesquisar</button>
-<<<<<<< HEAD
             <Link to={"/plantas/criar"} className='botoes'>Adicionar</Link>
-=======
-            <Link className='botoes'>Adicionar</Link>
->>>>>>> parent of 2043cc0 (Correção de rota de cadastro de plantas)
         </div>
         <div className='catalogo'>
             
