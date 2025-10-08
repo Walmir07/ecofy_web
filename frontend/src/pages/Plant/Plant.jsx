@@ -3,6 +3,7 @@ import "./Plant.css";
 import { Link, useParams } from 'react-router-dom';
 import { plantas } from '../../assets/database/plants';
 import imagemSeta from "/arrow-left.svg";
+import Header from '../../components/Header/Header.jsx';
 
 const Plant = () => {
 
@@ -15,6 +16,7 @@ const Plant = () => {
 
   return (
     <div className='plant'>
+       <Header/>
         <div className="area-voltar">
           <Link to={"/plantas"} className='voltar'>
             <img src={imagemSeta} alt="Seta para voltar" />

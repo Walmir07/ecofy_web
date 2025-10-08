@@ -3,10 +3,12 @@ import "./Home.css";
 import  { Link } from "react-router-dom";
 import Card from '../../components/Card/Card.jsx';
 import { plantas } from '../../assets/database/plants.js';
+import Header from '../../components/Header/Header.jsx';
 
 const Home = () => {
   return (
     <div className="home">
+      <Header/>
          <div className='opcoes'>
             <input className='barra-pesquisa' placeholder='Buscar planta...'></input>
             <button className='botoes'>Pesquisar</button>

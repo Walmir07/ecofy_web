@@ -1,12 +1,13 @@
 .card-planta {
     display: flex;
     flex-direction: column;
-    height: 220px;
+    height: 250px;
+    width: 80%;
     color: #000000;
     border: 2px solid #000000;
     border-radius: 10px;
-    background-color: bisque;
     text-decoration: none;
+    justify-self: center; 
 }
 
 .area-imagem {

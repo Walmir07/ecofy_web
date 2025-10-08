@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./Create.css";
 import { Link } from 'react-router-dom';
 import imagemSeta from "/arrow-left.svg";
+import Header from '../../components/Header/Header.jsx';
 
 const Create = () => {
 
@@ -56,6 +57,7 @@ const submeterPlanta = (e) => {
 
   return (
     <div className='create'>
+       <Header/>
         <div className="area-voltar">
           <Link to={"/plantas"} className='voltar'>
             <img src={imagemSeta} alt="Seta para voltar" />
