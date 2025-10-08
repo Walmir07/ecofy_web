@@ -3,7 +3,7 @@ export const plantas = [
     _id: "683e3a10a429f73f128d946e",
     nome: "Lírio da Paz",
     categoria: "Ornamental",
-    descricao: "Planta elegante com flores brancas distintas, conhecida por purificar o ar e prosperar em ambientes com pouca luz.",
+    descricao: "Planta elegante com flores brancas distintas, conhecida por purificar o ar e prosperar em ambientes com pouca luz. Planta elegante com flores brancas distintas, conhecida por purificar o ar e prosperar em ambientes com pouca luz. / Planta elegante com flores brancas distintas, conhecida por purificar o ar e prosperar em ambientes com pouca luz.",
     imagemUrl: "https://exemplo.com/imagens/lirio-da-paz.jpg"
   },
   {
