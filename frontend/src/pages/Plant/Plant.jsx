@@ -36,7 +36,7 @@ const Plant = () => {
                     </div>
                 </div>
                 <div className="funcionalidades">
-                  <button className="editar">Editar</button>
+                  <Link to={`/plantas/${id}/editar`} className="editar">Editar</Link>
                   <button className="delelar">Deletar</button>
                 </div>
             </div>

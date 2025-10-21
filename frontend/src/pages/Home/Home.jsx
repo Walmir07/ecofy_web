@@ -19,7 +19,7 @@ const Home = () => {
             {plantas.map(p => (
               <Card
                 _id={p._id}
-                key={p._id}
+                key={p._id + p.nome}
                 nome={p.nome}
               ></Card>
             ))}

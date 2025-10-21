@@ -6,6 +6,7 @@ import Introduction from './pages/Introduction/Introduction.jsx';
 import Home from './pages/Home/Home.jsx';
 import Plant from './pages/Plant/Plant.jsx';
 import Create from './pages/Create/Create.jsx';
+import Edit from './pages/Edit/Edit.jsx'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path='/plantas' element={<Home/>}></Route>
           <Route path='/plantas/:id' element={<Plant/>}></Route>
           <Route path='/plantas/criar' element={<Create/>}></Route>
+          <Route path='/plantas/:id/editar' element={<Edit/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
