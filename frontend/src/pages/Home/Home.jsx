@@ -10,6 +10,7 @@ import { getPlantas } from '../../api/plantas.js';
 const Home = () => {
 
   const [plantas, setPlantas] = useState([]);
+  const [busca, setBusca] = useState("");
 
   useEffect(() => {
     async function obterPlantas() {
@@ -19,17 +20,31 @@ const Home = () => {
     obterPlantas();
   }, []);
 
+  const plantasFiltradas =
+    busca.trim() === ""
+      ? plantas
+      : plantas.filter(planta =>
+          planta.nome.toLowerCase().includes(busca.toLowerCase())
+        );
+
   return (
     <div className="home">
       <Header/>
          <div className='opcoes'>
-            <input className='barra-pesquisa' placeholder='Buscar planta...'></input>
+            <input 
+                className='barra-pesquisa' 
+                placeholder='Buscar planta...'
+                value={busca}
+                onChange={(e) => setBusca(e.target.value)}
+            ></input>
+
             <button className='botoes'>Pesquisar</button>
+
             <Link to={"/plantas/criar"} className='botoes'>Adicionar</Link>
         </div>
         <div className='catalogo'>
             
-            {plantas.map(p => (
+            {plantasFiltradas.map(p => (
               <Card
                 _id={p._id}
                 key={p._id + p.nome}
