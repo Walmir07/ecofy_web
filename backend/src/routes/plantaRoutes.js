@@ -1,10 +1,12 @@
 import express, { json } from "express";
 import multer from "multer";
 import cors from "cors";
-import { listarPlantas, criarNovaPlanta, uploadImagem, atualizarDadosPlanta, removerPlanta } from "../controllers/plantasController.js";
+import { listarPlantas, buscarPlantaPorId, criarNovaPlanta, uploadImagem, atualizarDadosPlanta, removerPlanta } from "../controllers/plantasController.js";
+
+const APP_URL = "http://localhost:5173";
 
 const corsOptions = {
-  origin: "https://localhost:8000", //URL do front-end
+  origin: APP_URL, //URL do front-end
   optionsSuccessStatus: 200
 }
 
@@ -29,6 +31,8 @@ const routes = (app) => {
     })
 
     app.get("/plantas", listarPlantas);
+
+    app.get("/plantas/:id", buscarPlantaPorId);
 
     app.post("/plantas", criarNovaPlanta);
 

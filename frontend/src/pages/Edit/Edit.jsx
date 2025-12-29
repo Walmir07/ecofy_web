@@ -30,7 +30,7 @@ const Edit = () => {
     }
   };
 
-  const addPlanta = async (novaPlanta) => {
+  /*const addPlanta = async (novaPlanta) => {
   const response = await fetch('/api/plantas', {
       method: 'POST',
       headers: {
@@ -38,7 +38,7 @@ const Edit = () => {
       },
       body: JSON.stringify(novaPlanta),
   });
-};
+};*/
 
 const submeterPlanta = (e) => {
   e.preventDefault();

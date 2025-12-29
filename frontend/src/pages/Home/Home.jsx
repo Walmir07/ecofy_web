@@ -1,11 +1,24 @@
 import React from 'react';
 import "./Home.css";
 import  { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
 import Card from '../../components/Card/Card.jsx';
-import { plantas } from '../../assets/database/plants.js';
+//import { plantas } from '../../assets/database/plants.js';
 import Header from '../../components/Header/Header.jsx';
+import { getPlantas } from '../../api/plantas.js';
 
 const Home = () => {
+
+  const [plantas, setPlantas] = useState([]);
+
+  useEffect(() => {
+    async function obterPlantas() {
+      const dados = await getPlantas();
+      setPlantas(dados)
+    }
+    obterPlantas();
+  }, []);
+
   return (
     <div className="home">
       <Header/>

@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./Create.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import imagemSeta from "/arrow-left.svg";
-import Header from '../../components/Header/Header.jsx';
+import Header from "../../components/Header/Header.jsx";
+import { postPlantas } from "../../api/plantas.js"
 
 const Create = () => {
 
   const [nome, setNome] = useState("");
-  const [tipo, setTipo] = useState("");
+  const [categoria, setCategoria] = useState("");
   const [descricao, setDescricao] = useState("");
   const [imagem, setImagem] = useState(null);
-
+  
   const uploadImagemPlanta = (event) => {
       const file = event.target.files[0];
         if (file) {
@@ -21,39 +22,39 @@ const Create = () => {
         reader.readAsDataURL(file);
     }
   };
-
+  
   const addPlanta = async (novaPlanta) => {
-  const response = await fetch('/api/plantas', {
+    const response = await fetch('/api/plantas', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(novaPlanta),
-  });
-};
-
-const submeterPlanta = (e) => {
-  e.preventDefault();
-  const novaPlanta = {
-
-    nome,
-    tipo,
-    descricao,
-    imagem
-
+    });
   };
 
-  console.log(novaPlanta);
+  const submeterPlanta = async (e) => {
+      e.preventDefault()
 
-  addPlanta(novaPlanta);
-  
-  setNome('');
-  setTipo('');
-  setDescricao('');
-  setImagem(null);
+      try{
+          const novaPlanta = {
+              nome,
+              categoria,
+              descricao,
+              imagem,
+          };
 
-}
+          const plantaCriada = await postPlantas(novaPlanta);
+          console.log("Planta criada: ", plantaCriada);
+      } catch (error){
+          console.error(error.message)
+      }
 
+      setNome("");
+      setCategoria("");
+      setDescricao("");
+      setImagem(null);
+  }
 
   return (
     <div className='create'>
@@ -81,11 +82,11 @@ const submeterPlanta = (e) => {
                         
                         <input 
                             type='text' 
-                            id='tipoPlanta' 
-                            name='tipoPlanta'  
-                            value={tipo} 
-                            placeholder='Tipo da planta...'
-                            onChange={(e) => setTipo(e.target.value)}>
+                            id='categoriaPlanta' 
+                            name='categoriaPlanta'  
+                            value={categoria} 
+                            placeholder='Categoria da planta...'
+                            onChange={(e) => setCategoria(e.target.value)}>
                         </input>
                         
                         <textarea 

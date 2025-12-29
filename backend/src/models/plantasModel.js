@@ -9,6 +9,14 @@ export async function obterPlantas() {
     return colecao.find().toArray();
 };
 
+export async function buscarPlanta(id) {
+    const db = conexao.db("EcofyDB");
+    const colecao = db.collection("plantas");
+    const objId = new ObjectId(id);
+    return colecao.findOne({ _id: objId });
+}
+
+
 export async function criarPlanta(novaPlanta) {
     const db = conexao.db("EcofyDB");
     const colecao = db.collection("plantas");

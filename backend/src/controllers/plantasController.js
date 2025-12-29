@@ -1,9 +1,22 @@
 import fs from "fs";
-import { obterPlantas, criarPlanta, atualizarPlanta, deletarPlanta } from "../models/plantasModel.js";
+import { obterPlantas, buscarPlanta, criarPlanta, atualizarPlanta, deletarPlanta } from "../models/plantasModel.js";
 
 export async function listarPlantas(req, res) {
     const plantas = await obterPlantas();
     res.status(200).json(plantas);
+}
+
+export async function buscarPlantaPorId(req, res) {
+
+    const id = req.params.id;
+
+    try {
+        const resultado = await buscarPlanta(id);
+        res.status(200).json(resultado);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ "Erro": "Erro ao buscar planta." });
+    }
 }
 
 export async function criarNovaPlanta(req, res){
