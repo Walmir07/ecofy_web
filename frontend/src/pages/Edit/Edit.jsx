@@ -1,22 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Edit.css";
 import { plantas } from '../../assets/database/plants';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import imagemSeta from "/arrow-left.svg";
 import Header from '../../components/Header/Header.jsx';
+import { getPlantaPorId, putPlantas } from '../../api/plantas.js';
 
 const Edit = () => {
 
   const { id } = useParams();
-  console.log(id);
+  const [planta, setPlanta] = useState([]);
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+  async function obterPlanta() {
+    try {
+      const dados = await getPlantaPorId(id);
+      setPlanta(dados);
 
-  const { nome, categoria, descricao, imagemUrl} = plantas.filter(
-    (plantaAtual) => plantaAtual._id === id
-  )[0];
+      // Atualiza os inputs com os dados existentes
+      setNovoNome(dados.nome);
+      setNovoTipo(dados.categoria);
+      setNovaDescricao(dados.descricao);
 
-  const [novoNome, setNovoNome] = useState(nome);
-  const [novoTipo, setNovoTipo] = useState(categoria);
-  const [novaDescricao, setNovaDescricao] = useState(descricao);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  obterPlanta();
+}, [id]);
+
+
+  const { nome, categoria, descricao, imagemUrl} = planta;
+
+  const [novoNome, setNovoNome] = useState("");
+  const [novoTipo, setNovoTipo] = useState("");
+  const [novaDescricao, setNovaDescricao] = useState("");
   const [novaImagem, setNovaImagem] = useState(null);
 
   const uploadImagemPlanta = (event) => {
@@ -30,38 +50,26 @@ const Edit = () => {
     }
   };
 
-  /*const addPlanta = async (novaPlanta) => {
-  const response = await fetch('/api/plantas', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(novaPlanta),
-  });
-};*/
 
-const submeterPlanta = (e) => {
-  e.preventDefault();
-  const novaPlanta = {
+  const atualizarPlanta = async (e) => {
+    e.preventDefault();
 
-    novoNome,
-    novoTipo,
-    novaDescricao,
-    novaImagem
+    const dadosAtualizados = {
+        nome: novoNome,
+        categoria: novoTipo,
+        descricao: novaDescricao,
+        imagemUrl: novaImagem || planta.imagemUrl,
+    };
 
+    try {
+        await putPlantas(id, dadosAtualizados);
+        alert("Planta atualizada com sucesso!");
+        navigate(`/plantas`);
+    } catch (error) {
+        console.error(error);
+        alert("Erro ao atualizar a planta.");
+    }
   };
-
-  console.log(novaPlanta);
-
-  addPlanta(novaPlanta);
-  
-  setNovoNome('');
-  setNovoTipo('');
-  setNovaDescricao('');
-  setNovaImagem(null);
-
-}
-
 
   return (
     <div className='edit'>
@@ -73,7 +81,7 @@ const submeterPlanta = (e) => {
           </Link>
         </div>
         <div className='area-formulario'>
-            <form className='formulario' onSubmit={submeterPlanta}>
+            <form className='formulario' onSubmit={atualizarPlanta}>
                 <div className="area-inputs">
                   
                     <div className="dados">

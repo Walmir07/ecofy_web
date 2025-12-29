@@ -1,18 +1,43 @@
 import React from 'react';
 import "./Plant.css";
-import { Link, useParams } from 'react-router-dom';
-import { plantas } from '../../assets/database/plants';
+import { Link, useParams, useNavigate} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+//import { plantas } from '../../assets/database/plants';
 import imagemSeta from "/arrow-left.svg";
 import Header from '../../components/Header/Header.jsx';
+import { getPlantaPorId, deletePlanta } from '../../api/plantas.js';
 
 const Plant = () => {
-
+  
   const { id } = useParams();
-  console.log(id);
+  const [planta, setPlanta] = useState([]);
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    async function obterPlanta() {
+      try {
+        const dados = await getPlantaPorId(id);
+          setPlanta(dados);
+        } catch (error) {
+          console.error(error);
+        }
+    }
 
-  const { nome, categoria, descricao, imagemUrl} = plantas.filter(
-    (plantaAtual) => plantaAtual._id === id
-  )[0];
+    obterPlanta();
+  }, [id]);
+
+  const { nome, categoria, descricao, imagemUrl} = planta;
+
+  async function deletarPlanta(id) {
+    try {
+      await deletePlanta(id)
+      alert("Planta deletada com sucesso!");
+      navigate("/plantas");
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao deletar a planta.");
+    }
+  }
 
   return (
     <div className='plant'>
@@ -37,7 +62,7 @@ const Plant = () => {
                 </div>
                 <div className="funcionalidades">
                   <Link to={`/plantas/${id}/editar`} className="editar">Editar</Link>
-                  <button className="delelar">Deletar</button>
+                  <button className="delelar" onClick={() => deletarPlanta(id)} >Deletar</button>
                 </div>
             </div>
         </div>
