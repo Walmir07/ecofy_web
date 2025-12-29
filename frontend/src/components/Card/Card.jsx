@@ -6,7 +6,7 @@ const Card = ({_id, nome, imgUrl}) => {
   return (
     <Link to={`/plantas/${_id}`} className='card-planta'>
         <div className='area-imagem'>
-            <img src="/imagem-de-planta.avif" alt="Imagem teste" />
+            <img src={imgUrl} alt="Imagem de planta" />
         </div>
         <div className='area-nome'>
             <p>{nome}</p>

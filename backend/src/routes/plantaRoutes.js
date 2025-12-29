@@ -10,16 +10,9 @@ const corsOptions = {
   optionsSuccessStatus: 200
 }
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname);
-    }
+export const upload = multer({
+  storage: multer.memoryStorage(),
 });
-  
-const upload = multer({ dest: "./uploads", storage });
 
 const routes = (app) => {
 
@@ -34,9 +27,7 @@ const routes = (app) => {
 
     app.get("/plantas/:id", buscarPlantaPorId);
 
-    app.post("/plantas", criarNovaPlanta);
-
-    app.post("/upload", upload.single("imagem"), uploadImagem);
+    app.post("/plantas", upload.single("imagem"), criarNovaPlanta);
 
     app.put("/plantas/:id", atualizarDadosPlanta);
 

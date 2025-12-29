@@ -49,6 +49,7 @@ const Home = () => {
                 _id={p._id}
                 key={p._id + p.nome}
                 nome={p.nome}
+                imgUrl={p.imagemUrl}
               ></Card>
             ))}
 

@@ -21,20 +21,13 @@ export async function getPlantaPorId(id) {
 }
 
 export async function postPlantas(dadosPlanta) {
-    const res = await fetch(`${BASE_URL}/plantas`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dadosPlanta),
-    });
+  const res = await fetch(`${BASE_URL}/plantas`, {
+    method: "POST",
+    body: dadosPlanta,
+  });
 
-    if(!res.ok){
-        throw new Error("Erro ao criar planta!")
-    }
-
-    return res.json();
-
+  if (!res.ok) throw new Error("Erro ao criar planta!");
+  return res.json();
 }
 
 export async function putPlantas(id, dadosPlanta) {

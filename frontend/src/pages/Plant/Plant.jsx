@@ -52,7 +52,7 @@ const Plant = () => {
             <div className='planta'>
                 <div className="informacoes">
                     <div className="imagem">
-                        <img src={"/imagem-de-planta.avif"} alt="Imagem de paltas teste" />
+                        <img src={imagemUrl} alt="Imagem de planta" />
                     </div>
                     <div className="dados">
                         <p>Nome: {nome}</p>

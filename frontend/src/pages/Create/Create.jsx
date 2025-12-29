@@ -13,48 +13,36 @@ const Create = () => {
   const [imagem, setImagem] = useState(null);
   
   const uploadImagemPlanta = (event) => {
-      const file = event.target.files[0];
-        if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setImagem(reader.result);
-        };
-        reader.readAsDataURL(file);
-    }
-  };
-  
-  const addPlanta = async (novaPlanta) => {
-    const response = await fetch('/api/plantas', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(novaPlanta),
-    });
-  };
+  setImagem(event.target.files[0]); // só guarda o arquivo real
+};
 
-  const submeterPlanta = async (e) => {
-      e.preventDefault()
+const submeterPlanta = async (e) => {
+  e.preventDefault();
 
-      try{
-          const novaPlanta = {
-              nome,
-              categoria,
-              descricao,
-              imagem,
-          };
-
-          const plantaCriada = await postPlantas(novaPlanta);
-          console.log("Planta criada: ", plantaCriada);
-      } catch (error){
-          console.error(error.message)
-      }
-
-      setNome("");
-      setCategoria("");
-      setDescricao("");
-      setImagem(null);
+  if (!nome || !categoria || !descricao) {
+    alert("Preencha todos os campos!");
+    return;
   }
+
+  try {
+    const formData = new FormData();
+    formData.append("nome", nome);
+    formData.append("categoria", categoria);
+    formData.append("descricao", descricao);
+    if (imagem) formData.append("imagem", imagem);
+
+    const plantaCriada = await postPlantas(formData); // vamos ajustar postPlantas
+    console.log("Planta criada: ", plantaCriada);
+
+    setNome("");
+    setCategoria("");
+    setDescricao("");
+    setImagem(null);
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao criar planta!");
+  }
+};
 
   return (
     <div className='create'>
@@ -112,7 +100,13 @@ const Create = () => {
                                 onChange={uploadImagemPlanta}
                             />
                             <span className="addImagemPlanta">{imagem ? "" : "+"}</span>
-                            {imagem && <img className='preview-imagem' src={imagem} alt="Uploaded" />}
+                            {imagem && (
+  <img
+    className="preview-imagem"
+    src={URL.createObjectURL(imagem)}
+    alt="Preview"
+  />
+)}
                         </label>
 
                     </div>
