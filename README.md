@@ -44,9 +44,9 @@ Este projeto se trata de um sistema full-stack que permite ao usuário cadastrar
 
 ## 💻 Demonstração
 
-No momento não foi preparada a imagem com os exemplos de telas que o projeto possui, mas a seguir temos um exemplo temporário que logo mais será substituído:
+A seguir temos um exemplo de algumas telas presentes na aplicação em funcionamento.
 
-![Telas do spotify-clone](https://github.com/user-attachments/assets/ab84f388-9e7d-4cfd-9425-1d8dc0316677)
+<img width="2000" height="1200" alt="Telas do Ecofy" src="https://github.com/user-attachments/assets/4992f19a-1a6a-4384-a087-1d4a6a3eaeeb" />
 
 ## 📡 API - Rotas disponíveis do back-end:
 
